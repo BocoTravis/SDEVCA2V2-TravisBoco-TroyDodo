@@ -1,0 +1,187 @@
+/**** General Styling ****/
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+}
+
+/**** Navbar ****/
+.navbar {
+    background-color: #000;
+    border-bottom: 2px solid #fff;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #0d6efd;
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.dropdown-item:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+/**** Footer ****/
+.my-footer {
+    border-top: 2px solid #fff;
+}
+
+.my-footer p {
+    font-size: 14px;
+    color: #0d6efd;
+}
+
+/**** Header ****/
+header {
+    border-bottom: 2px solid #fff;
+}
+
+/* Container to ensure the image is properly centered and styled */
+.product-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+/* Product image dimensions */
+.product-image {
+    width: auto;
+    max-width: 100%;
+    max-height: 400px; /* Ensures images aren't too large */
+    object-fit: contain; /* Displays the full image without cropping */
+    border-radius: 8px; /* Optional: Adds rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a light shadow for better visibility */
+}
+
+.stretched-centered {
+    display: block;           /* Ensures it's treated as a block element */
+    margin: 0 auto;           /* Centers the image horizontally */
+    width: 300px;             /* Adjust the width to stretch the image */
+    height: 200px;            /* Adjust the height to stretch */
+    object-fit: fill;         /* Stretches the image to fill the dimensions */
+    border-radius: 5px;       /* Optional: Adds rounded corners for aesthetics */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a light shadow */
+}
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .product-image {
+        max-height: 300px; /* Smaller size for mobile */
+    }
+}
+
+/* Black background for the page */
+.bg-black {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for visibility */
+}
+
+/* Product Card Styling */
+.product-card {
+    background-color: #000; /* Black card background */
+    color: #fff; /* White text */
+    border: 1px solid #0d6efd; /* Blue border for emphasis */
+    border-radius: 10px; /* Smooth corners */
+    padding: 15px; /* Internal spacing */
+    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.2); /* Subtle blue shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+}
+
+.product-card:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+    box-shadow: 0 6px 12px rgba(13, 110, 253, 0.5); /* Enhanced blue shadow */
+}
+
+/* Text inside product cards */
+.product-card h4 {
+    color: #0d6efd; /* Blue text for product name */
+}
+
+.product-card p {
+    color: #0d6efd; /* Blue text for price */
+}
+
+/* Breadcrumb Links */
+.text-primary {
+    color: #0d6efd; /* Blue text for links and highlights */
+}
+
+.text-primary:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+
+/* Custom Container for Login Page */
+.container {
+    background-color: #000; /* Black background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0d6efd; /* Blue button background */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Borders for Sections */
+.border-primary {
+    border-color: #0d6efd !important; /* Blue border */
+}
+
+/* Headings and Titles */
+.my_title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 15px;
+}
+
+/* Signup Page Container */
+.container {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    border-radius: 10px; /* Smooth corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Borders */
+.border-primary {
+    border-color: #0d6efd !important; /* Blue border */
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0d6efd; /* Blue button background */
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
