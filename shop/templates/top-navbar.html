@@ -1,29 +1,28 @@
-<div class="container">
+<div class="container" style="background-color: #000; color: #fff; padding: 10px 0;">
     <div class="my_custom_menu">
-        <ul>
+        <ul class="list-unstyled mb-0 d-flex justify-content-end" style="gap: 15px;">
             {% if user.is_authenticated %}
             <li>
                 Welcome, 
-                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="#" class="dropdown-toggle text-primary" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ user.username }} <i class="fas fa-user-circle"></i>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <!-- Sign out form with proper styling -->
-                    <form method="post" action="{% url 'logout' %}">
+                <div class="dropdown-menu dropdown-menu-end bg-light">
+                    <form method="post" action="{% url 'logout' %}" style="margin: 0;">
                         {% csrf_token %}
-                        <button type="submit" class="dropdown-item" style="border: none; background: none;">
+                        <button type="submit" class="dropdown-item text-primary" style="border: none; background: none;">
                             Sign Out <i class="fas fa-sign-out-alt"></i>
                         </button>
                     </form>
-                    <a href="#" class="dropdown-item">Change Password</a>
+                    <a href="#" class="dropdown-item text-primary">Change Password</a>
                 </div>
             </li>
             {% else %}
             <li>
-                <a href="{% url 'accounts:signup' %}">Sign Up <i class="fas fa-user-plus"></i></a>
+                <a href="{% url 'accounts:signup' %}" class="text-primary">Sign Up <i class="fas fa-user-plus"></i></a>
             </li>
             <li>
-                <a href="{% url 'login' %}">Sign In <i class="fas fa-sign-in"></i></a>
+                <a href="{% url 'login' %}" class="text-primary">Sign In <i class="fas fa-sign-in"></i></a>
             </li>
             {% endif %}
         </ul>
