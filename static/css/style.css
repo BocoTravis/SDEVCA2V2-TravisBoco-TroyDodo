@@ -185,3 +185,41 @@ header {
 .btn-primary:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
+
+/* cart css */
+.my_custom_table {
+    color: #fff; /* White text */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.my_custom_thead {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.custom_image {
+    width: 100px;
+    height: 100px;
+    object-fit: contain; /* Ensures the image is fully visible */
+    border-radius: 8px;
+}
+
+.custom_icon {
+    color: #0d6efd; /* Blue icons */
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.custom_icon:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+.my_custom_button {
+    background-color: #0d6efd !important; /* Blue button */
+    color: #fff;
+    border: none;
+}
+
+.my_custom_button:hover {
+    background-color: #0056b3 !important; /* Darker blue on hover */
+}
