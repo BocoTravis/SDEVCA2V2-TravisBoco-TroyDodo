@@ -12,7 +12,7 @@
                     <ul class="dropdown-menu bg-light">
                         <li><a class="dropdown-item text-primary" href="{% url 'shop:all_products' %}">All Products</a></li>
                         {% for cat in links %}
-                            <li><a class="dropdown-item text-primary" href="{{cat.get_absolute_url}}">{{cat.name}}</a></li>
+                            <li><a class="dropdown-item text-primary" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -24,6 +24,12 @@
                     <a class="nav-link text-white" href="{% url 'cart:cart_detail' %}">
                         <i class="fas fa-shopping-cart"></i> {{ item_count }}
                     </a>
+                </li>
+                {% endif %}
+                <!-- Create New Product -->
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'shop:product_create' %}">Create New Product</a>
                 </li>
                 {% endif %}
             </ul>

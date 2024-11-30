@@ -54,7 +54,6 @@ header {
     border-bottom: 2px solid #fff;
 }
 
-/* Container to ensure the image is properly centered and styled */
 .product-image-container {
     display: flex;
     justify-content: center;
@@ -64,7 +63,6 @@ header {
     padding: 10px;
 }
 
-/* Product image dimensions */
 .product-image {
     width: auto;
     max-width: 100%;
@@ -74,7 +72,7 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-/* Stretched-Centered Images */
+/**** Stretched-Centered Images ****/
 .stretched-centered {
     display: block;
     margin: 0 auto;
@@ -85,7 +83,7 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Media query for smaller screens */
+/* Media Query for Smaller Screens */
 @media (max-width: 768px) {
     .product-image {
         max-height: 300px;
@@ -98,7 +96,7 @@ header {
     color: #fff;
 }
 
-/* Product Card Styling */
+/**** Product Card Styling ****/
 .product-card {
     background-color: #000;
     color: #fff;
@@ -114,7 +112,6 @@ header {
     box-shadow: 0 6px 12px rgba(13, 110, 253, 0.5);
 }
 
-/* Text Inside Product Cards */
 .product-card h4 {
     color: #0d6efd;
 }
@@ -123,7 +120,7 @@ header {
     color: #0d6efd;
 }
 
-/* Breadcrumb Links */
+/**** Breadcrumb Links ****/
 .text-primary {
     color: #0d6efd;
 }
@@ -132,14 +129,14 @@ header {
     color: #0056b3;
 }
 
-/* Custom Container for Login Page */
+/**** Custom Container ****/
 .container {
     background-color: #000;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Buttons */
+/**** Buttons ****/
 .btn-primary {
     background-color: #0d6efd;
     border: none;
@@ -149,12 +146,12 @@ header {
     background-color: #0056b3;
 }
 
-/* Borders for Sections */
+/**** Borders for Sections ****/
 .border-primary {
     border-color: #0d6efd !important;
 }
 
-/* Headings and Titles */
+/**** Headings and Titles ****/
 .my_title {
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -162,15 +159,7 @@ header {
     margin-bottom: 15px;
 }
 
-/* Signup Page Container */
-.container {
-    background-color: #000;
-    color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* cart css */
+/**** Cart CSS ****/
 .my_custom_table {
     color: #fff;
     border-radius: 8px;
@@ -208,7 +197,7 @@ header {
     background-color: #0056b3 !important;
 }
 
-/***Stripe Button***/
+/**** Stripe Button ****/
 .my_custom_button {
     background-color: #0d6efd !important;
     color: #fff;

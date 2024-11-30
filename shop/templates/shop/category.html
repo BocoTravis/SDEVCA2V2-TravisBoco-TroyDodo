@@ -15,59 +15,63 @@
     {% endif %}
 {% endblock %}
 {% block content %}
-    
-    <div class="bg-black text-white py-3">
-        <!-- Breadcrumb navigation -->
+
+<div class="bg-black text-white py-3">
+    <!-- Breadcrumb navigation -->
+    {% if category %}
+        <div class="row my_row_class">
+            <div class="mx-auto">
+                <p><a href="{% url 'shop:all_products' %}" class="text-primary">Catalogue of Clothing</a> | <span class="text-primary">{{ category.name }}</span></p>
+            </div>
+        </div>
+    {% endif %}
+    <div class="mx-auto">
         {% if category %}
-            <div class="row my_row_class">
-                <div class="mx-auto">
-                    <p><a href="{% url 'shop:all_products' %}" class="text-primary">Catalogue of Clothing</a> | <span class="text-primary">{{category.name}}</span></p>
-                </div>
-            </div>
-        {% endif %}
-        <div class="mx-auto">
-            {% if category %}
-                <img class="my_image" src="{{category.image.url}}" alt="{{category.name}}">
-            </div>
-            <br>
-            <div>
-                <h1 class="text-center my_title text-primary">{{category.name}}</h1>
-                <p class="text-justify">{{category.description}}</p>
-            </div>
-            {% else %}
-            </div>
-            <br>
-            <div>
-                <h1 class="text-center my_title text-primary">FW24 Collection</h1>
-                <p class="text-justify">Our latest collection brings together sneakers and clothes designed to elevate your comfort and style. 
-                    From bold, vibrant designs to understated, cosy essentials,
-                    our pieces transform even the simplest outfits 
-                    into fashion statements. Not only do they look great, but they’re crafted to keep you warm
+            <img class="my_image" src="{{ category.image.url }}" alt="{{ category.name }}">
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center my_title text-primary">{{ category.name }}</h1>
+            <p class="text-justify">{{ category.description }}</p>
+        </div>
+        {% else %}
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center my_title text-primary">FW24 Collection</h1>
+            <p class="text-justify">Our latest collection brings together sneakers and clothes designed to elevate your comfort and style. 
+                From bold, vibrant designs to understated, cosy essentials,
+                our pieces transform even the simplest outfits 
+                into fashion statements. Not only do they look great, but they’re crafted to keep you warm
                 and confident all season long. Step into the chill with Numero Uno
                                               where comfort meets personalised charm.</p>
-            </div>
+        </div>
         {% endif %}
         <div class="container">
             <div class="row mx-auto">
                 {% for product in prods %}
                     <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4">
-                        <div class="card text-center product-card bg-black border border-primary position-relative" style="min-width:18rem;">
-                            <a class="img" href="{{product.get_absolute_url}}">
-                                <img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}">
+                        <div class="card text-center product-card bg-black border border-primary position-relative" style="min-width:18rem; height: 450px;">
+                            <a class="img" href="{{ product.get_absolute_url }}">
+                                <img class="card-img-top my_image" src="{{ product.image.url }}" alt="{{ product.name }}" style="height: 200px; object-fit: contain;">
                             </a>
                             {% if product.is_popular %}
                                 <span class="badge bg-danger position-absolute top-0 start-0 m-2">Hot</span>
                             {% endif %}
-                            <div class="card-body">
-                                <h4 class="text-primary">{{product.name}}</h4>
-                                {% if product.on_sale %}
-                                    <p class="text-danger">
-                                        <s>€{{product.price}}</s>
-                                        <strong class="text-primary">€{{product.sale_price}}</strong>
-                                    </p>
-                                {% else %}
-                                    <p class="text-primary">€{{product.price}}</p>
-                                {% endif %}
+                            <div class="card-body d-flex flex-column justify-content-between">
+                                <div>
+                                    <h4 class="text-primary">{{ product.name }}</h4>
+                                    {% if product.on_sale %}
+                                        <p class="text-danger">
+                                            <s>€{{ product.price }}</s>
+                                            <strong class="text-primary">€{{ product.sale_price }}</strong>
+                                        </p>
+                                    {% else %}
+                                        <p class="text-primary">€{{ product.price }}</p>
+                                    {% endif %}
+                                </div>
+                                <!-- Add to Cart Button -->
+                                <a href="{% url 'cart:add_cart' product.id %}" class="btn btn-primary mt-3">Add to Cart</a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +82,7 @@
                     <hr>
                     <div class="text-center">
                         {% for pg in prods.paginator.page_range %}
-                            <a href="?page={{pg}}" class="btn btn-light btn-sm {% if prods.number == pg %}active{% endif %}">{{pg}}</a>
+                            <a href="?page={{ pg }}" class="btn btn-light btn-sm {% if prods.number == pg %}active{% endif %}">{{ pg }}</a>
                         {% endfor %}
                     </div>
                 {% endif %}
@@ -86,4 +90,5 @@
         </div>
         <br>
     </div>
+</div>
 {% endblock %}
