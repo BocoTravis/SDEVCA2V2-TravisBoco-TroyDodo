@@ -51,13 +51,23 @@
             <div class="row mx-auto">
                 {% for product in prods %}
                     <div class="my_bottom_margin col-9 col-lg-4 col-sm-12 col-md-4">
-                        <div class="card text-center product-card bg-black border border-primary" style="min-width:18rem;">
+                        <div class="card text-center product-card bg-black border border-primary position-relative" style="min-width:18rem;">
                             <a class="img" href="{{product.get_absolute_url}}">
                                 <img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}">
                             </a>
+                            {% if product.is_popular %}
+                                <span class="badge bg-danger position-absolute top-0 start-0 m-2">Hot</span>
+                            {% endif %}
                             <div class="card-body">
                                 <h4 class="text-primary">{{product.name}}</h4>
-                                <p class="text-primary">€{{product.price}}</p>
+                                {% if product.on_sale %}
+                                    <p class="text-danger">
+                                        <s>€{{product.price}}</s>
+                                        <strong class="text-primary">€{{product.sale_price}}</strong>
+                                    </p>
+                                {% else %}
+                                    <p class="text-primary">€{{product.price}}</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

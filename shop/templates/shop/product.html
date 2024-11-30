@@ -20,17 +20,28 @@
             <div class="row">
                 <!-- Product Image Section -->
                 <div class="col-12 col-sm-12 col-md-6 text-center">
-                    <div class="product-card">
+                    <div class="product-card position-relative">
                         <img src="{{product.image.url}}" 
                              alt="{{product.name}}" 
                              class="product-image">
+                        {% if product.is_popular %}
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2">Hot</span>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- Product Details Section -->
                 <div class="col-12 col-sm-12 col-md-6">
                     <div class="product-card">
                         <h1 class="my_prod_title text-white">{{product.name}}</h1>
-                        <p class="text-primary">€{{product.price}}</p>
+                        {% if product.on_sale %}
+                            <p class="text-danger">
+                                <s>€{{product.price}}</s> <!-- Original Price Striked Out -->
+                                <strong class="text-primary">€{{product.sale_price}}</strong> <!-- Sale Price -->
+                            </p>
+                            <span class="badge bg-primary">On Sale</span> <!-- Sale Indicator -->
+                        {% else %}
+                            <p class="text-primary">€{{product.price}}</p>
+                        {% endif %}
                         <p class="my_title text-white">Product Description</p>
                         <p class="text-justify my_prod_text text-white">{{product.description}}</p>
                         {% if product.stock == 0 %}
