@@ -40,3 +40,15 @@ verbose_name='Euro Price')
 
     def __str__(self):
         return self.product
+
+from django.core.validators import MinValueValidator, MaxValueValidator
+from vouchers.models import Voucher
+
+voucher = models.ForeignKey(Voucher,
+                            related_name='orders',
+                            null=True,
+                            blank=True,
+                            on_delete=models.SET_NULL)
+discount = models.IntegerField(default = 0,
+                            validators=[MinValueValidator(0),
+                            MaxValueValidator(100)])
