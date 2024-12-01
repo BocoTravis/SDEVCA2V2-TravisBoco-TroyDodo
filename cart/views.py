@@ -102,3 +102,101 @@ def full_remove(request, product_id):
     cart_item = CartItem.objects.get(product=product, cart=cart)
     cart_item.delete()
     return redirect('cart:cart_detail')
+
+def empty_cart(request):
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart, active=True)
+        cart_items.delete()
+        cart.delete()
+        return redirect('shop:all_products')
+    except Cart.DoesNotExist:
+        pass
+    return redirect('cart:cart_detail')
+
+from order.models import Order, OrderItem
+from stripe import StripeError
+
+
+def create_order(request):
+    try:
+        session_id = request.GET.get('session_id')
+        if not session_id:
+            raise ValueError("Session ID not found.")
+
+        try:
+            session = stripe.checkout.Session.retrieve(session_id)
+        except StripeError as e:
+            return redirect("shop:all_products")
+     
+
+        customer_details = session.customer_details
+        if not customer_details or not customer_details.address:
+            raise ValueError("Missing information in the Stripe session.")
+
+        billing_address = customer_details.address
+        billing_name = customer_details.name
+        shipping_address = customer_details.address
+        shipping_name = customer_details.name
+
+        try:
+            order_details = Order.objects.create(
+                token=session.id,
+                total=session.amount_total / 100,  # Convert cents to currency units
+                emailAddress=customer_details.email,
+                billingName=billing_name,
+                billingAddress1=billing_address.line1,
+                billingCity=billing_address.city,
+                billingPostcode=billing_address.postal_code,
+                billingCountry=billing_address.country,
+                shippingName=shipping_name,
+shippingAddress1=shipping_address.line1, 
+                shippingCity=shipping_address.city, 
+                shippingPostcode=shipping_address.postal_code,
+                shippingCountry=shipping_address.country,
+            )
+            order_details.save()
+        except Exception as e: 
+            print(f"Error: {e}")
+            return redirect("shop:all_products") 
+
+        try:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, active=True)
+        except ObjectDoesNotExist:
+            return redirect("shop:all_products")  
+        except Exception as e:
+            print(f"Error: {e}")
+            return redirect("shop:all_products")  
+
+        for item in cart_items:
+            try:
+                oi = OrderItem.objects.create(
+                    product=item.product.name,
+                    quantity=item.quantity,
+                    price=item.product.price,
+                    order=order_details
+                )
+                oi.save()
+                '''Reduce stock when order is placed or saved'''
+                product = Product.objects.get(id=item.product.id)
+                product.stock = int(item.product.stock - item.quantity)
+                product.save()
+                empty_cart(request)
+            except Exception as e:
+                    return redirect("shop:all_products")  
+        return redirect('order:thanks',order_details.id)
+    
+
+    except ValueError as ve:
+        print(f"Error: {ve}")
+        return redirect("shop:all_products")  
+
+    except StripeError as se:
+        print(f"Stripe Error: {se}")
+        return redirect("shop:all_products") 
+
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return redirect("shop:all_products") 
+
