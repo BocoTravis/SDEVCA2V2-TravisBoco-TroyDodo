@@ -43,7 +43,7 @@ We both peer-reviewed each other’s code to ensure quality and fix bugs.
 Prepared and presented the project collaboratively.
 
 
-##References
+# References
 Throughout this project, we extensively utilised the labs to help us get our site running. Specifically:
 
 Lab 10: Used as a base template to kickstart the project structure and logic.
