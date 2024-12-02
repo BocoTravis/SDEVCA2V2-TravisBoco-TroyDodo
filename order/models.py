@@ -1,6 +1,7 @@
 from django.db import models
-
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
+from vouchers.models import Voucher
 class Order(models.Model):
     token = models.CharField(max_length=250, blank=True)
     total = models.DecimalField(max_digits=10, decimal_places=2,
@@ -41,8 +42,6 @@ verbose_name='Euro Price')
     def __str__(self):
         return self.product
 
-from django.core.validators import MinValueValidator, MaxValueValidator
-from vouchers.models import Voucher
 
 voucher = models.ForeignKey(Voucher,
                             related_name='orders',
